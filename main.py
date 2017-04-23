@@ -15,12 +15,12 @@ transifex_projects = [
     ["openstreetmap-france", "osmose"],
     ["osm-catala", "osmbot"],
     ["fieldpapers", "fieldpapers"]
-            ]
+]
 
 translatewiki_projects = ["osm-potlatch2-main",
-            "out-waymarked-trails-0-all",
-            "out-osm-potlatch2-help",
-            "out-osm-site"]
+                          "out-waymarked-trails-0-all",
+                          "out-osm-potlatch2-help",
+                          "out-osm-site"]
 
 weblate_projects = ["osmand/main", "osmand/phrases"]
 
