@@ -10,7 +10,11 @@ def run(projects, language):
         url = base_url.format(project, language)
         html_doc = r.get(url).text
         soup = BeautifulSoup(html_doc, 'html.parser')
-        value = soup.find(attrs={'class': "percent"}).get_text().replace(",", ".").replace("%", "")
-        result = [project, float(value)]
+        findings = soup.find(attrs={'class': "percent"})
+        if findings is not None:
+            value = findings.get_text().replace(",", ".").replace("%", "")
+            result = [project, float(value)]
+        else:
+            result = [project, 0.0]
         results.append(result)
     return results

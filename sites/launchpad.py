@@ -11,7 +11,10 @@ def run(projects, language):
         html_doc = r.get(url).text
         soup = BeautifulSoup(html_doc, 'html.parser')
         row = soup.find(attrs={'class': "language-{}".format(language)})
-        value = row.find_all("td")[1].find_all("span")[1].get_text()
-        result = [project, 100-float(value)]
+        if row is not None:
+            value = row.find_all("td")[1].find_all("span")[1].get_text()
+            result = [project, 100-float(value)]
+        else:
+            result = [project, 0]
         results.append(result)
     return results

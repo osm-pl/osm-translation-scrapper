@@ -13,9 +13,12 @@ def run(projects, language):
         html_doc = r.get(url).text
         soup = BeautifulSoup(html_doc, 'html.parser')
         links = [a for a in soup.find_all("a") if ":" in a.get_text()]
-        lang = [a for a in links if a.get_text()[:prefix_length] == language + ":"][0]
-        row = lang.find_parent("tr")
-        value = row.find_all("td")[3].get_text().replace("%", "")
-        result = [project, int(value)]
+        lang = [a for a in links if a.get_text()[:prefix_length] == language + ":"]
+        if len(lang) != 0:
+            row = lang[0].find_parent("tr")
+            value = row.find_all("td")[3].get_text().replace("%", "")
+            result = [project, int(value)]
+        else:
+            result = [project, 0]
         results.append(result)
     return results
